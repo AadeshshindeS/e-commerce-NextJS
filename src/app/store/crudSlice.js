@@ -5,6 +5,8 @@ const initialState = {
   productsData: [],
   cartData: [],
   count: 1,
+  navbarCount: 0,
+  totalAmountCart: 0,
 };
 
 const crudSlice = createSlice({
@@ -55,6 +57,20 @@ const crudSlice = createSlice({
         return item;
       });
     },
+
+    totalCount: (state) => {
+      state.navbarCount = state.cartData.reduce(
+        (prev, curr) => prev + curr.count,
+        0
+      );
+    },
+
+    totalAmount: (state, { payload }) => {
+      state.totalAmountCart = state.cartData.reduce(
+        (prev, curr) => prev + curr.price * curr.count,
+        0
+      );
+    },
   },
 
   extraReducers: (builder) => {
@@ -83,5 +99,7 @@ export const {
   deleteCart,
   decrementCartCount,
   incrementCartCount,
+  totalCount,
+  totalAmount,
 } = crudSlice.actions;
 export default crudSlice.reducer;

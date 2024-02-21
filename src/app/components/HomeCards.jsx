@@ -3,7 +3,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartButton, productThunk } from "../store/crudSlice";
+import {
+  addToCartButton,
+  productThunk,
+  totalAmount,
+  totalCount,
+} from "../store/crudSlice";
 
 const HomeCards = () => {
   const dispatch = useDispatch();
@@ -65,7 +70,9 @@ const HomeCards = () => {
                 className="bg-orange-400 text-white px-4 py-1 rounded-md hover:opacity-80"
                 onClick={() => {
                   dispatch(addToCartButton(item));
-                  console.log("clicked on button");
+                  // console.log("clicked on button");
+                  dispatch(totalCount());
+                  dispatch(totalAmount());
                 }}
               >
                 Add To Cart
