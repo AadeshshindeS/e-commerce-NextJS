@@ -77,6 +77,8 @@ const HomeCards = () => {
                   dispatch(addToCartButton(item));
                   dispatch(totalAmount());
                   dispatch(totalCount());
+                  dispatch(totalCount());
+                  dispatch(totalAmount());
                 }}
               >
                 Add To Cart

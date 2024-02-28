@@ -5,6 +5,7 @@ const initialState = {
   productsData: [],
   cartData: [],
   count: 1,
+  navbarCount: 0,
   totalAmountCart: 0,
 };
 
