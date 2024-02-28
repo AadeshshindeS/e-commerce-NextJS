@@ -1,4 +1,3 @@
-import Scroller from "./components/Scroller";
 import HomeCards from "./components/HomeCards";
 // import { useDispatch } from "react-redux";
 

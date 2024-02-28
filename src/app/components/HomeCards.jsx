@@ -3,12 +3,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartButton, productThunk } from "../store/crudSlice";
+import {
+  addToCartButton,
+  productThunk,
+  totalAmount,
+  totalCount,
+} from "../store/crudSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomeCards = () => {
   const dispatch = useDispatch();
   const productsData = useSelector((state) => state.productsData);
   const router = useRouter();
+
+  const notify = () => toast("Added to Cart Successfully!!!");
 
   useEffect(() => {
     dispatch(productThunk());
@@ -64,12 +73,15 @@ const HomeCards = () => {
               <button
                 className="bg-orange-400 text-white px-4 py-1 rounded-md hover:opacity-80"
                 onClick={() => {
+                  notify();
                   dispatch(addToCartButton(item));
-                  console.log("clicked on button");
+                  dispatch(totalAmount());
+                  dispatch(totalCount());
                 }}
               >
                 Add To Cart
               </button>
+              <ToastContainer />
             </div>
           );
         })}
